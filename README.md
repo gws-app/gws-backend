@@ -45,11 +45,11 @@ docker run -p 8080:8080 --env-file .env gws-backend
   - `POST /api/moods` 
   ```bash
     curl -X POST http://localhost:8080/api/moods \
-    -F "user_id=12345" \
-    -F "emotion=bliss" \
-    -F "activities={\"exercise\":[\"run\",\"yoga\"]}" \
-    -F "note=Feeling great today!" \
-    -F "voice_note=@/path/to/voice_note.mp3"
+    -F "user_id=reza" \
+    -F "emotion=happy" \
+    -F "activities={"kindness":["walking","meth"],"social": ["reading","cooking"]} \
+    -F "note=huhahahahah" \
+    -F "voice_note=voice_note.mp3"
 ```
   - Response:
 ```json
