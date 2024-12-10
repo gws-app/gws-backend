@@ -1,15 +1,7 @@
-FROM golang as build-go
-WORKDIR /gws
-COPY go.mod .
-COPY go.sum .
-RUN go mod download
+FROM golang:1.23
+WORKDIR /app
 COPY . .
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o /bin/gws .
-
-FROM alpine:latest
-RUN addgroup -S gws && adduser -S gws -G gws
-USER gws
-WORKDIR /home/gws
-COPY --from=build-go /bin/gws ./
+RUN go mod download
+RUN go build -o main .
 EXPOSE 8080
-ENTRYPOINT ["./gws"]
+CMD ["./main"]
